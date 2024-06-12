@@ -2,10 +2,15 @@ extends CharacterBody3D
 
 @export_category("General")
 
+
+
+
+
+
 @export var playerSpeed = 8
 @export var jumpforce = 8.0
 @export var playerAcceleration = 5.0
-@export var gravity = 10
+@export var gravity = 9.81
 @export var camera_sensitivity = 2
 @export var camera_acceleration = 20
 #
