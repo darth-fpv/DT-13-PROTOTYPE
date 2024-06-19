@@ -61,8 +61,8 @@ func  _physics_process(delta):
 	# Add the gravity.
 	
 	#velocity.y -= gravity * delta
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
 	#var input_dir = Input.get_vector("left", "right", "fowrdward", "backward")
 	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	#if direction:
@@ -75,3 +75,26 @@ func  _physics_process(delta):
 			#delta = time in respect to the last passed frame, used for physics and functions.
 			#Vector3 = declairing a plane with 3 dimentional coordinate properties.  
 			#lerp = liner interpolation, used for velocity and accelleration changes 
+
+#check all overlapping bodies in the cone area#
+func _on_flashlight_timer_timeout():
+	var overlaps = $"Head/Camera3D/Hand/Flashlight Area".get_overlapping_bodies()
+	if overlaps.size() > 0:
+		print(overlaps.size())
+		for overlap in overlaps:
+			if overlap.is_in_group("Enemies"):
+				##print("i see you")
+				
+
+				var playerPosition = overlap.global_transform.origin
+				$VisionRaycast.look_at(playerPosition, Vector3.UP)
+				$VisionRaycast.force_raycast_update()
+				
+				if $VisionRaycast.is_colliding():
+					var collider = $VisionRaycast.get_collider()
+					
+					if collider.is_in_group("Enemies"):
+						print("enemy detected")
+				#
+		#
+	#

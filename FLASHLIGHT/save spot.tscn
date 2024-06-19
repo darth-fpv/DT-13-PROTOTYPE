@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://cy35rppfnmdqe"]
+[gd_scene load_steps=23 format=3 uid="uid://cy35rppfnmdqe"]
 
 [ext_resource type="Texture2D" uid="uid://i5tpdff61vic" path="res://textures/rusty_metal_02_diff_4k.jpg" id="1_f7wvx"]
 [ext_resource type="Texture2D" uid="uid://wmp8vjliwdn0" path="res://textures/dry_riverbed_rock_diff_4k.jpg" id="1_k3swg"]
-[ext_resource type="Script" path="res://World.gd" id="1_m34na"]
+[ext_resource type="Script" path="res://SCRIPTS/World.gd" id="1_m34na"]
 [ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_ox0i5"]
-[ext_resource type="Script" path="res://Enemy.gd" id="2_0okqm"]
+[ext_resource type="Script" path="res://SCRIPTS/Enemy.gd" id="2_0okqm"]
 [ext_resource type="Texture2D" uid="uid://cvkp5bd4tgvli" path="res://textures/dry_riverbed_rock_disp_4k.png" id="2_lxptm"]
 [ext_resource type="Texture2D" uid="uid://h82bxgwy0804" path="res://textures/rusty_metal_02_disp_4k.png" id="2_t6auu"]
 [ext_resource type="Texture2D" uid="uid://dfd3g34h77ku" path="res://textures/rusty_metal_02_rough_4k.jpg" id="3_nss3c"]
+[ext_resource type="PackedScene" uid="uid://c2u5du1sms51q" path="res://CONE.tscn" id="3_rts72"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0xkp"]
 sky_top_color = Color(0.678944, 0.678944, 0.678944, 1)
@@ -33,6 +34,9 @@ volumetric_fog_temporal_reprojection_enabled = false
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w0ggm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bm0ud"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7weps"]
+points = PackedVector3Array(-0.000194252, -1, 1, 0.239237, -1, 0.97083, -0.000194252, 1, -0.000195742, -0.239432, -1, 0.97083, 0.464676, -1, 0.885278, -0.663296, -1, 0.748434, -0.464871, -1, 0.885278, 0.662907, -1, 0.748434, 0.822852, -1, 0.567933, 0.934989, -1, 0.354542, 0.992515, -1, 0.120399, 0.992515, -1, -0.120595, 0.934989, -1, -0.354738, 0.822852, -1, -0.568128, 0.662907, -1, -0.74863, 0.464676, -1, -0.885474, 0.239237, -1, -0.971026, -0.000194252, -1, -1, -0.239432, -1, -0.971026, -0.464871, -1, -0.885474, -0.663296, -1, -0.74863, -0.823047, -1, -0.568128, -0.935183, -1, -0.354738, -0.992709, -1, -0.120595, -0.992709, -1, 0.120399, -0.935183, -1, 0.354542, -0.823047, -1, 0.567933)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wutr6"]
 
@@ -108,6 +112,26 @@ light_size = 0.496
 light_specular = 0.05
 spot_range = 20.0
 spot_angle = 25.0
+
+[node name="Flashlight Area" type="Area3D" parent="SubViewportContainer/SubViewport/Player/Head/Camera3D/Hand"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Player/Head/Camera3D/Hand/Flashlight Area"]
+
+[node name="Cone" parent="SubViewportContainer/SubViewport/Player/Head/Camera3D/Hand/Flashlight Area" instance=ExtResource("3_rts72")]
+transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
+visible = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Player/Head/Camera3D/Hand/Flashlight Area"]
+transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
+shape = SubResource("ConvexPolygonShape3D_7weps")
+
+[node name="FlashlightTimer" type="Timer" parent="SubViewportContainer/SubViewport/Player"]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="SubViewportContainer/SubViewport/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295964, -0.00501609, -0.172158)
+target_position = Vector3(0, -1, -100)
 
 [node name="Enemy" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2883, 4.35579, 0)
@@ -274,3 +298,5 @@ skeleton = NodePath("../../../../SubViewportContainer")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Level/wall 10"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_0v7xd")
+
+[connection signal="timeout" from="SubViewportContainer/SubViewport/Player/FlashlightTimer" to="SubViewportContainer/SubViewport/Player" method="_on_flashlight_timer_timeout"]
