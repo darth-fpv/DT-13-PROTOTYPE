@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 @onready var nav_agent = $NavigationAgent3D
 #calls the navigationagent3D node#
-var speed = 3
+var speed = 10
 
 
 func _physics_process(delta):
@@ -21,3 +21,4 @@ func update_target_location(target_location):
 	#print("tartget_Loccation:")
 	#print(target_location)
 	nav_agent.set_target_position(target_location)
+

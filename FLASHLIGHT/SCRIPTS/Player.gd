@@ -3,19 +3,19 @@ extends CharacterBody3D
 @export_category("General")
 
 
-
-
-
-
+##player variaubles##
 @export var playerSpeed = 8
 @export var jumpforce = 8.0
 @export var playerAcceleration = 5.0
 @export var gravity = 9.81
 @export var camera_sensitivity = 2
 @export var camera_acceleration = 20
-#
+##calling player nodes when starting##
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+
+##enemy detection##
+@export var EnemyDetection = 0
 
 #states the 3 axis coordinates, 
 var direction = Vector3.ZERO
@@ -60,23 +60,12 @@ func  _physics_process(delta):
 	move_and_slide()
 	# Add the gravity.
 	
-	#velocity.y -= gravity * delta
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir = Input.get_vector("left", "right", "fowrdward", "backward")
-	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#if direction:
-	
-	
-	
-	
-	
 	#terms to remeber:
 			#delta = time in respect to the last passed frame, used for physics and functions.
 			#Vector3 = declairing a plane with 3 dimentional coordinate properties.  
 			#lerp = liner interpolation, used for velocity and accelleration changes 
 
-#check all overlapping bodies in the cone area#
+##check all overlapping bodies in the cone area##
 func _on_flashlight_timer_timeout():
 	var overlaps = $"Head/Camera3D/Hand/Flashlight Area".get_overlapping_bodies()
 	if overlaps.size() > 0:
@@ -85,7 +74,6 @@ func _on_flashlight_timer_timeout():
 			if overlap.is_in_group("Enemies"):
 				##print("i see you")
 				
-
 				var playerPosition = overlap.global_transform.origin
 				$VisionRaycast.look_at(playerPosition, Vector3.UP)
 				$VisionRaycast.force_raycast_update()
@@ -94,7 +82,10 @@ func _on_flashlight_timer_timeout():
 					var collider = $VisionRaycast.get_collider()
 					
 					if collider.is_in_group("Enemies"):
-						print("enemy detected")
-				#
-		#
-	#
+						print("detected")
+						var EnemyDetection = 1
+						print(EnemyDetection)
+			else:
+				print("not detcted")
+				var EnemyDetection = 0
+				print(EnemyDetection)

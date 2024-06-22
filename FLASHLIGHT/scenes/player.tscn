@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh00tcfacvdqg"]
+
+[ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_fpgfl"]
+[ext_resource type="PackedScene" uid="uid://c2u5du1sms51q" path="res://CONE.tscn" id="2_icxw8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w0ggm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bm0ud"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7weps"]
+points = PackedVector3Array(-0.000194252, -1, 1, 0.239237, -1, 0.97083, -0.000194252, 1, -0.000195742, -0.239432, -1, 0.97083, 0.464676, -1, 0.885278, -0.663296, -1, 0.748434, -0.464871, -1, 0.885278, 0.662907, -1, 0.748434, 0.822852, -1, 0.567933, 0.934989, -1, 0.354542, 0.992515, -1, 0.120399, 0.992515, -1, -0.120595, 0.934989, -1, -0.354738, 0.822852, -1, -0.568128, 0.662907, -1, -0.74863, 0.464676, -1, -0.885474, 0.239237, -1, -0.971026, -0.000194252, -1, -1, -0.239432, -1, -0.971026, -0.464871, -1, -0.885474, -0.663296, -1, -0.74863, -0.823047, -1, -0.568128, -0.935183, -1, -0.354738, -0.992709, -1, -0.120595, -0.992709, -1, 0.120399, -0.935183, -1, 0.354542, -0.823047, -1, 0.567933)
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57797, 0)
+script = ExtResource("1_fpgfl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_w0ggm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_bm0ud")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496992, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Hand" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.306789, -0.496992, -0.207722)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D/Hand"]
+light_energy = 7.7
+light_volumetric_fog_energy = 1.88
+light_size = 0.496
+light_specular = 0.05
+spot_range = 20.0
+spot_angle = 25.0
+
+[node name="Flashlight Area" type="Area3D" parent="Head/Camera3D/Hand"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/Hand/Flashlight Area"]
+
+[node name="Cone" parent="Head/Camera3D/Hand/Flashlight Area" instance=ExtResource("2_icxw8")]
+transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
+visible = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Head/Camera3D/Hand/Flashlight Area"]
+transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
+shape = SubResource("ConvexPolygonShape3D_7weps")
+
+[node name="FlashlightTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295964, -0.00501609, -0.172158)
+target_position = Vector3(0, -1, -100)
+
+[connection signal="timeout" from="FlashlightTimer" to="." method="_on_flashlight_timer_timeout"]
