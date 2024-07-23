@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 ##player variaubles##
 @export var playerSpeed = 8
-@export var jumpforce = 8.0
+@export var jumpforce = 8
 @export var playerAcceleration = 5.0
 @export var gravity = 9.81
 @export var camera_sensitivity = 2
@@ -15,17 +15,20 @@ extends CharacterBody3D
 @onready var camera = $Head/Camera3D
 
 ##enemy detection##
-@export var EnemyDetection = 0
+var enemy_node = null
 
 #states the 3 axis coordinates, 
 var direction = Vector3.ZERO
 var head_y_axix =0.0
 var camera_x_axis =0.0
 
+var enemy
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	enemy = get_tree().get_first_node_in_group("Enemies")
 
-
+##mouse control of the player##
 func _input(event):
 	if event is InputEventMouseMotion:
 		#capture mouse in respect of of x and y axis's
@@ -33,7 +36,7 @@ func _input(event):
 		camera_x_axis += event.relative.y *camera_sensitivity
 		#clamps cam angle to 90 and -90 degrees.
 		camera_x_axis = clamp(camera_x_axis, -90.0, 90.0)
-	
+	#closes the game when ESC key is pressed#
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
 
@@ -69,9 +72,10 @@ func  _physics_process(delta):
 func _on_flashlight_timer_timeout():
 	var overlaps = $"Head/Camera3D/Hand/Flashlight Area".get_overlapping_bodies()
 	if overlaps.size() > 0:
-		print(overlaps.size())
+		#print(overlaps.size())
 		for overlap in overlaps:
 			if overlap.is_in_group("Enemies"):
+				enemy_node = overlap
 				##print("i see you")
 				
 				var playerPosition = overlap.global_transform.origin
@@ -82,10 +86,25 @@ func _on_flashlight_timer_timeout():
 					var collider = $VisionRaycast.get_collider()
 					
 					if collider.is_in_group("Enemies"):
+						if overlap.EnemyDetection == false:
+							print("working")
+							overlap.EnemyDetection = true
+							overlap._run()
 						print("detected")
 						var EnemyDetection = 1
 						print(EnemyDetection)
+						
+						# HERE
 			else:
 				print("not detcted")
 				var EnemyDetection = 0
 				print(EnemyDetection)
+
+##Adds the "ReferenceGroup" objects into a array if the objects enter the radius Area around the player##
+func _connect_point(area):
+	if area.get_parent().is_in_group("ReferencePoints"):
+		enemy.nearby_points.append(area.get_parent())
+		print("This is good", enemy.nearby_points)
+##removes the objects out of the array if the objects exits the radius Area around the player##
+func _disconect_point(area):
+	enemy.nearby_points.erase(area.get_parent())
