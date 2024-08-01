@@ -120,7 +120,7 @@ spot_angle = 30.0
 [node name="Enimies" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Enemy" parent="SubViewportContainer/SubViewport/Enimies" instance=ExtResource("3_wtnf2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6532, 4.35579, -44.3332)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.6387, 2.5359, 40.8872)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_txoqw")
@@ -631,6 +631,7 @@ layers = 5
 mesh = SubResource("CylinderMesh_qqrf5")
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/refernecePoints/position1"]
+metadata/point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position1/Area3D"]
 
@@ -642,6 +643,7 @@ layers = 5
 mesh = SubResource("CylinderMesh_tf7kn")
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/refernecePoints/position2"]
+metadata/point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position2/Area3D"]
 shape = SubResource("BoxShape3D_hkq7r")
@@ -654,6 +656,7 @@ layers = 5
 mesh = SubResource("CylinderMesh_snbfw")
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/refernecePoints/position3"]
+metadata/point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position3/Area3D"]
 shape = SubResource("BoxShape3D_k1nr8")
@@ -666,6 +669,7 @@ layers = 5
 mesh = SubResource("CylinderMesh_kx2ki")
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/refernecePoints/position4"]
+metadata/point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position4/Area3D"]
 shape = SubResource("BoxShape3D_qsbq8")
@@ -678,6 +682,13 @@ layers = 5
 mesh = SubResource("CylinderMesh_h38wl")
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/refernecePoints/position5"]
+metadata/point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position5/Area3D"]
 shape = SubResource("BoxShape3D_a36q7")
+
+[connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position1/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position2/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position3/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position4/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position5/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]

@@ -1,5 +1,4 @@
 extends CharacterBody3D
-@onready var player = $SubViewportContainer/SubViewport/Player
 @onready var nav_agent = $NavigationAgent3D
 #calls the navigationagent3D node#
 var speed = 10
@@ -13,15 +12,20 @@ var greatest_distance = Vector3(0,0,0)
 var nearby_points = []
 var point
 var furthest_point
+var random_point
+var possible_points
 	
 
 
-
+func _ready():
+	$Timer.start()
 
 
 ##code to toggle between modes, flip flop##
 func _physics_process(delta):
 	if Input.is_action_just_pressed("Debug_Enemy"):
+		$Timer.stop()
+		EnemyDetection = false
 		if StateOfEnemy == 1:
 			_run()
 			StateOfEnemy = 2
@@ -118,6 +122,21 @@ func _run():
 			print(greatest_distance)
 
 
+func _random_point():
+	possible_points = get_tree().get_nodes_in_group("ReferencePoints")
+	print(possible_points)
+	random_point = RandomNumberGenerator.new().randi_range(0, len(possible_points) - 1)
+	random_point = possible_points[random_point]
+	$Timer.start()
 
+
+
+
+##check if enemy is colliding with the object and changes it's state##
 func _on_area_3d_area_entered(area):
-	pass # Replace with function body.
+	if area.has_meta("point"):
+		if area.get_parent() == furthest_point:
+			EnemyDetection = false
+			_random_point()
+			StateOfEnemy = 3
+	print("ghi")

@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 
 ##player variaubles##
-@export var playerSpeed = 8
+@export var playerSpeed = 12
 @export var jumpforce = 8
 @export var playerAcceleration = 5.0
 @export var gravity = 9.81
@@ -63,10 +63,6 @@ func  _physics_process(delta):
 	move_and_slide()
 	# Add the gravity.
 	
-	#terms to remeber:
-			#delta = time in respect to the last passed frame, used for physics and functions.
-			#Vector3 = declairing a plane with 3 dimentional coordinate properties.  
-			#lerp = liner interpolation, used for velocity and accelleration changes 
 
 ##check all overlapping bodies in the cone area##
 func _on_flashlight_timer_timeout():
@@ -93,7 +89,7 @@ func _on_flashlight_timer_timeout():
 						print("detected")
 						var EnemyDetection = 1
 						print(EnemyDetection)
-						
+					
 						# HERE
 			else:
 				print("not detcted")
@@ -108,3 +104,20 @@ func _connect_point(area):
 ##removes the objects out of the array if the objects exits the radius Area around the player##
 func _disconect_point(area):
 	enemy.nearby_points.erase(area.get_parent())
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	#terms to remeber:
+			#delta = time in respect to the last passed frame, used for physics and functions.
+			#Vector3 = declairing a plane with 3 dimentional coordinate properties.  
+			#lerp = liner interpolation, used for velocity and accelleration changes 

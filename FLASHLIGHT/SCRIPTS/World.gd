@@ -21,3 +21,5 @@ func _physics_process(delta):
 		get_tree().call_group("Enemies", "update_target_location", player.global_transform.origin)
 	elif enemy.StateOfEnemy == 2:
 		get_tree().call_group("Enemies", "update_target_location", enemy.furthest_point.global_transform.origin)
+	elif enemy.StateOfEnemy == 3:
+		get_tree().call_group("Enemies", "update_target_location", enemy.random_point.global_transform.origin)
