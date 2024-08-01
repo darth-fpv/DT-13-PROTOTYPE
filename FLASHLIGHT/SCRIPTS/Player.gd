@@ -105,19 +105,12 @@ func _connect_point(area):
 func _disconect_point(area):
 	enemy.nearby_points.erase(area.get_parent())
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	#terms to remeber:
 			#delta = time in respect to the last passed frame, used for physics and functions.
 			#Vector3 = declairing a plane with 3 dimentional coordinate properties.  
 			#lerp = liner interpolation, used for velocity and accelleration changes 
+
+
+func _enemy_enter_range(area):
+	if area.get_parent().has_method("_detect_player"):
+		enemy._detect_player()

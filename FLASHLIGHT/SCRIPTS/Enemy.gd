@@ -140,3 +140,9 @@ func _on_area_3d_area_entered(area):
 			_random_point()
 			StateOfEnemy = 3
 	print("ghi")
+
+
+func _detect_player():
+	if StateOfEnemy == 3:
+		$Timer.stop()
+		StateOfEnemy = 1

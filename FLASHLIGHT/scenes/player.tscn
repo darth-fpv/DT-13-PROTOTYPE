@@ -78,3 +78,4 @@ shape = SubResource("CylinderShape3D_2onct")
 [connection signal="timeout" from="FlashlightTimer" to="." method="_on_flashlight_timer_timeout"]
 [connection signal="area_entered" from="Enemy movement area" to="." method="_connect_point"]
 [connection signal="area_exited" from="Enemy movement area" to="." method="_disconect_point"]
+[connection signal="area_entered" from="Player detection" to="." method="_enemy_enter_range"]
