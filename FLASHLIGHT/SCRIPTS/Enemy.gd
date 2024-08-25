@@ -4,7 +4,7 @@ extends CharacterBody3D
 var speed = 10
 
 ##raycast variable##
-var StateOfEnemy =1 ## 1: following PLayer, 2: Running, 3: Random Move
+var StateOfEnemy = 1 ## 1: following PLayer, 2: Running, 3: Random Move
 var EnemyDetection = false
 
 ##enemy pathfinding##
@@ -19,6 +19,7 @@ var possible_points
 
 func _ready():
 	$Timer.start()
+	furthest_point = get_tree().get_first_node_in_group("ReferencePoints")
 
 
 ##code to toggle between modes, flip flop##
@@ -146,3 +147,7 @@ func _detect_player():
 	if StateOfEnemy == 3:
 		$Timer.stop()
 		StateOfEnemy = 1
+
+
+func _on_audio_stream_player_3d_ready():
+	AudioStreamMP3

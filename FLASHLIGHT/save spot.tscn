@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cy35rppfnmdqe"]
+[gd_scene load_steps=29 format=3 uid="uid://cy35rppfnmdqe"]
 
 [ext_resource type="Texture2D" uid="uid://i5tpdff61vic" path="res://textures/rusty_metal_02_diff_4k.jpg" id="1_f7wvx"]
 [ext_resource type="Texture2D" uid="uid://wmp8vjliwdn0" path="res://textures/dry_riverbed_rock_diff_4k.jpg" id="1_k3swg"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://h82bxgwy0804" path="res://textures/rusty_metal_02_disp_4k.png" id="2_t6auu"]
 [ext_resource type="Texture2D" uid="uid://dfd3g34h77ku" path="res://textures/rusty_metal_02_rough_4k.jpg" id="3_nss3c"]
 [ext_resource type="PackedScene" uid="uid://dp27v5ys1qh5u" path="res://scenes/enemy.tscn" id="3_wtnf2"]
+[ext_resource type="PackedScene" uid="uid://6any8qgrg121" path="res://scenes/Button.tscn" id="9_ra8vq"]
+[ext_resource type="PackedScene" uid="uid://dixqv5xrgwrsj" path="res://Objects/the_oldest_view_-_the_rolling_giant_v1/scene.gltf" id="10_3hr8y"]
+[ext_resource type="Script" path="res://SCRIPTS/door.gd" id="11_ydhvq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0xkp"]
 sky_top_color = Color(0.678944, 0.678944, 0.678944, 1)
@@ -624,7 +627,7 @@ shape = SubResource("BoxShape3D_0v7xd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04916, 0, 15.0221)
 
 [node name="position1" type="Node3D" parent="NavigationRegion3D/refernecePoints" groups=["ReferencePoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.8591, 1.42349, 88.4912)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147.934, 1.42349, 126.704)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/refernecePoints/position1"]
 layers = 5
@@ -636,7 +639,7 @@ metadata/point = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position1/Area3D"]
 
 [node name="position2" type="Node3D" parent="NavigationRegion3D/refernecePoints" groups=["ReferencePoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8352, 1.44068, 26.3322)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.10863, 1.44068, 127.994)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/refernecePoints/position2"]
 layers = 5
@@ -649,7 +652,7 @@ metadata/point = true
 shape = SubResource("BoxShape3D_hkq7r")
 
 [node name="position3" type="Node3D" parent="NavigationRegion3D/refernecePoints" groups=["ReferencePoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48882, 1.51521, 85.0201)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.599, 1.51521, 127.632)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/refernecePoints/position3"]
 layers = 5
@@ -662,7 +665,7 @@ metadata/point = true
 shape = SubResource("BoxShape3D_k1nr8")
 
 [node name="position4" type="Node3D" parent="NavigationRegion3D/refernecePoints" groups=["ReferencePoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5013, 1.51859, 6.41701)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.895, 1.51859, 82.8005)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/refernecePoints/position4"]
 layers = 5
@@ -675,7 +678,7 @@ metadata/point = true
 shape = SubResource("BoxShape3D_qsbq8")
 
 [node name="position5" type="Node3D" parent="NavigationRegion3D/refernecePoints" groups=["ReferencePoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147.767, 1.50174, 128.752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.26157, 1.50174, 78.5355)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/refernecePoints/position5"]
 layers = 5
@@ -687,8 +690,33 @@ metadata/point = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position5/Area3D"]
 shape = SubResource("BoxShape3D_a36q7")
 
+[node name="position6" type="Node3D" parent="NavigationRegion3D/refernecePoints" groups=["ReferencePoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136.321, 1.50174, 78.5355)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/refernecePoints/position6"]
+layers = 5
+mesh = SubResource("CylinderMesh_h38wl")
+
+[node name="Area3D" type="Area3D" parent="NavigationRegion3D/refernecePoints/position6"]
+metadata/point = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position6/Area3D"]
+shape = SubResource("BoxShape3D_a36q7")
+
+[node name="Button" parent="." instance=ExtResource("9_ra8vq")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -9.45425, 2.34083, -5.00135)
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("10_3hr8y")]
+transform = Transform3D(0.591648, 0, 0.806197, 0, 1, 0, -0.806197, 0, 0.591648, -12.6375, 0.5, -12.3722)
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.9254, 0, -90.8099)
+script = ExtResource("11_ydhvq")
+button = NodePath("../Button")
+
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position1/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position2/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position3/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position4/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position5/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position6/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]

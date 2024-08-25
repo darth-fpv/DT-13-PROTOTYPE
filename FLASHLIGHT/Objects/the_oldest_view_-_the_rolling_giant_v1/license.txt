@@ -1,0 +1,11 @@
+Model Information:
+* title:	The oldest view - The Rolling Giant v1
+* source:	https://sketchfab.com/3d-models/the-oldest-view-the-rolling-giant-v1-4c5c993f84fe41a2872d9c3858b983f5
+* author:	MakakaObami (https://sketchfab.com/makakaobami)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The oldest view - The Rolling Giant v1" (https://sketchfab.com/3d-models/the-oldest-view-the-rolling-giant-v1-4c5c993f84fe41a2872d9c3858b983f5) by MakakaObami (https://sketchfab.com/makakaobami) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

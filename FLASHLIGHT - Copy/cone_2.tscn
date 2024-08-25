@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://eamhaugnyla5"]
+
+[ext_resource type="PackedScene" uid="uid://b21kwymm6w8jw" path="res://cone/cone2.glb" id="1_xopcb"]
+
+[node name="cone2" instance=ExtResource("1_xopcb")]

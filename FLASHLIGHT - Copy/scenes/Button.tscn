@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://6any8qgrg121"]
+
+[ext_resource type="Script" path="res://SCRIPTS/player_interact.gd" id="1_8wicv"]
+[ext_resource type="ArrayMesh" uid="uid://dj0jl8j07os5p" path="res://Objects/square button-untextured.obj" id="2_pj0qf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n6hef"]
+size = Vector3(6.5, 3.4, 6.5)
+
+[node name="Button" type="StaticBody3D"]
+script = ExtResource("1_8wicv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_pj0qf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679173, 0)
+shape = SubResource("BoxShape3D_n6hef")

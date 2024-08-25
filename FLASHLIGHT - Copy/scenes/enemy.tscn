@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp27v5ys1qh5u"]
+
+[ext_resource type="Script" path="res://SCRIPTS/Enemy.gd" id="1_kd5c0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wutr6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jqpjw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jxw2x"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemies"]]
+script = ExtResource("1_kd5c0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_wutr6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_jqpjw")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_jxw2x")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_random_point"]

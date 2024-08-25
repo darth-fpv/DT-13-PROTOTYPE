@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://so5ldpawhi5n"]
+
+[ext_resource type="Script" path="res://Interact/player_interact.gd" id="1_d2g0u"]
+[ext_resource type="Texture2D" uid="uid://b3c0y0e8ars06" path="res://scenes/crosshair.png" id="2_6yoeq"]
+
+[node name="player_interact" type="RayCast3D"]
+target_position = Vector3(0, 0, -4)
+script = ExtResource("1_d2g0u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="prompt" type="Label" parent="CanvasLayer"]
+offset_left = 69.0
+offset_top = 2.0
+offset_right = 209.0
+offset_bottom = 30.0
+
+[node name="reticle" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -4.5
+offset_right = 5.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+texture = ExtResource("2_6yoeq")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp27v5ys1qh5u"]
+[gd_scene load_steps=6 format=3 uid="uid://dp27v5ys1qh5u"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Enemy.gd" id="1_kd5c0"]
+[ext_resource type="AudioStream" uid="uid://c7pcvjdet0eqq" path="res://Audio/465266-OBJWhled-Hand_Truck_Dolly_Metal-011_OB_UNLOADED_MTC_TheRoll_StereoAB.wav" id="2_iha65"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wutr6"]
 
@@ -29,5 +30,12 @@ shape = SubResource("CapsuleShape3D_jxw2x")
 wait_time = 15.0
 one_shot = true
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_iha65")
+volume_db = 80.0
+autoplay = true
+doppler_tracking = 2
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_random_point"]
+[connection signal="ready" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_ready"]

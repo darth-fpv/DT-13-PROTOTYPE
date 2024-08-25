@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=3 uid="uid://dh00tcfacvdqg"]
+
+[ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_fpgfl"]
+[ext_resource type="PackedScene" uid="uid://c2u5du1sms51q" path="res://CONE.tscn" id="2_icxw8"]
+[ext_resource type="PackedScene" uid="uid://so5ldpawhi5n" path="res://Interact/player_interact.tscn" id="3_xob44"]
+[ext_resource type="Texture2D" uid="uid://b3c0y0e8ars06" path="res://scenes/crosshair.png" id="4_kmegf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w0ggm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bm0ud"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7weps"]
+points = PackedVector3Array(-0.000194252, -1, 1, 0.239237, -1, 0.97083, -0.000194252, 1, -0.000195742, -0.239432, -1, 0.97083, 0.464676, -1, 0.885278, -0.663296, -1, 0.748434, -0.464871, -1, 0.885278, 0.662907, -1, 0.748434, 0.822852, -1, 0.567933, 0.934989, -1, 0.354542, 0.992515, -1, 0.120399, 0.992515, -1, -0.120595, 0.934989, -1, -0.354738, 0.822852, -1, -0.568128, 0.662907, -1, -0.74863, 0.464676, -1, -0.885474, 0.239237, -1, -0.971026, -0.000194252, -1, -1, -0.239432, -1, -0.971026, -0.464871, -1, -0.885474, -0.663296, -1, -0.74863, -0.823047, -1, -0.568128, -0.935183, -1, -0.354738, -0.992709, -1, -0.120595, -0.992709, -1, 0.120399, -0.935183, -1, 0.354542, -0.823047, -1, 0.567933)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xjk57"]
+height = 20.0
+radius = 120.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2onct"]
+height = 20.0
+radius = 42.0
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57797, 0)
+script = ExtResource("1_fpgfl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_w0ggm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_bm0ud")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496992, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Hand" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.306789, -0.496992, -0.207722)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D/Hand"]
+light_energy = 7.7
+light_volumetric_fog_energy = 1.88
+light_size = 0.496
+light_specular = 0.05
+spot_range = 20.0
+spot_angle = 25.0
+
+[node name="Flashlight Area" type="Area3D" parent="Head/Camera3D/Hand"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/Hand/Flashlight Area"]
+
+[node name="Cone" parent="Head/Camera3D/Hand/Flashlight Area" instance=ExtResource("2_icxw8")]
+transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
+visible = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Head/Camera3D/Hand/Flashlight Area"]
+transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
+shape = SubResource("ConvexPolygonShape3D_7weps")
+
+[node name="player_interact" parent="Head" instance=ExtResource("3_xob44")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09114, 0)
+
+[node name="FlashlightTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295964, -0.00501609, -0.172158)
+target_position = Vector3(0, -1, -100)
+
+[node name="Enemy movement area" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy movement area"]
+shape = SubResource("CylinderShape3D_xjk57")
+
+[node name="Player detection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player detection"]
+shape = SubResource("CylinderShape3D_2onct")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 163.0
+offset_top = 67.0
+offset_right = 203.0
+offset_bottom = 107.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -4.5
+offset_right = 5.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_kmegf")
+
+[connection signal="timeout" from="FlashlightTimer" to="." method="_on_flashlight_timer_timeout"]
+[connection signal="area_entered" from="Enemy movement area" to="." method="_connect_point"]
+[connection signal="area_exited" from="Enemy movement area" to="." method="_disconect_point"]
+[connection signal="area_entered" from="Player detection" to="." method="_enemy_enter_range"]

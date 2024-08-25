@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh00tcfacvdqg"]
+[gd_scene load_steps=9 format=3 uid="uid://dh00tcfacvdqg"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_fpgfl"]
 [ext_resource type="PackedScene" uid="uid://c2u5du1sms51q" path="res://CONE.tscn" id="2_icxw8"]
+[ext_resource type="PackedScene" uid="uid://so5ldpawhi5n" path="res://Interact/player_interact.tscn" id="3_xob44"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w0ggm"]
 
@@ -56,6 +57,9 @@ visible = false
 transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
 shape = SubResource("ConvexPolygonShape3D_7weps")
 
+[node name="player_interact" parent="Head" instance=ExtResource("3_xob44")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09114, 0)
+
 [node name="FlashlightTimer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
@@ -74,6 +78,16 @@ shape = SubResource("CylinderShape3D_xjk57")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player detection"]
 shape = SubResource("CylinderShape3D_2onct")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 163.0
+offset_top = 67.0
+offset_right = 203.0
+offset_bottom = 107.0
 
 [connection signal="timeout" from="FlashlightTimer" to="." method="_on_flashlight_timer_timeout"]
 [connection signal="area_entered" from="Enemy movement area" to="." method="_connect_point"]

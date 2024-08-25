@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cktdso5egie1b"]
+
+[ext_resource type="ArrayMesh" uid="uid://dj0jl8j07os5p" path="res://Objects/square button-untextured.obj" id="1_jn2bg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n6hef"]
+size = Vector3(6.5, 3.4, 6.5)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_jn2bg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679173, 0)
+shape = SubResource("BoxShape3D_n6hef")

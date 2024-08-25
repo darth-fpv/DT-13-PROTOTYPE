@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyhh4g8tpirlk"
+path="res://.godot/imported/walking test.mp3-c8c74cf0e89fb440d4be90eca8a07743.mp3str"
+
+[deps]
+
+source_file="res://Audio/walking test.mp3"
+dest_files=["res://.godot/imported/walking test.mp3-c8c74cf0e89fb440d4be90eca8a07743.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.72
+bpm=0.0
+beat_count=0
+bar_beats=4
