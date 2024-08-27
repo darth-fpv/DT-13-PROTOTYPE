@@ -57,7 +57,7 @@ visible = false
 transform = Transform3D(1.60498e-14, -3.93403e-07, -8.4, -8.4, -3.93403e-07, 1.42302e-21, -3.67176e-07, 9, -3.67176e-07, 3.8743e-07, 3.57628e-07, -8.98063)
 shape = SubResource("ConvexPolygonShape3D_7weps")
 
-[node name="player_interact" parent="Head" instance=ExtResource("3_xob44")]
+[node name="player_interact" parent="Head/Camera3D" instance=ExtResource("3_xob44")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09114, 0)
 
 [node name="FlashlightTimer" type="Timer" parent="."]

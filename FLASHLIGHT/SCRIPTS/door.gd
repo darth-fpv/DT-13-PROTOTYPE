@@ -1,7 +1,8 @@
-extends Node3D
+extends AnimatableBody3D
 
 @export var button : Node
+		
 
-func _process(delta):
-	if button.pressed:
-		print("YEP")
+func _open():
+	print("DOOR OPENED")
+	$AnimationPlayer.play("door_open")

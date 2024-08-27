@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://h82bxgwy0804" path="res://textures/rusty_metal_02_disp_4k.png" id="2_t6auu"]
 [ext_resource type="Texture2D" uid="uid://dfd3g34h77ku" path="res://textures/rusty_metal_02_rough_4k.jpg" id="3_nss3c"]
 [ext_resource type="PackedScene" uid="uid://dp27v5ys1qh5u" path="res://scenes/enemy.tscn" id="3_wtnf2"]
+[ext_resource type="PackedScene" uid="uid://dfpcdreqpkwt" path="res://door.tscn" id="9_7fl5r"]
 [ext_resource type="PackedScene" uid="uid://6any8qgrg121" path="res://scenes/Button.tscn" id="9_ra8vq"]
-[ext_resource type="PackedScene" uid="uid://dixqv5xrgwrsj" path="res://Objects/the_oldest_view_-_the_rolling_giant_v1/scene.gltf" id="10_3hr8y"]
-[ext_resource type="Script" path="res://SCRIPTS/door.gd" id="11_ydhvq"]
+[ext_resource type="PackedScene" uid="uid://d3vuo8ex0ecxb" path="res://SCRIPTS/Game_door_1.glb" id="11_dc3dn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0xkp"]
 sky_top_color = Color(0.678944, 0.678944, 0.678944, 1)
@@ -703,16 +703,17 @@ metadata/point = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position6/Area3D"]
 shape = SubResource("BoxShape3D_a36q7")
 
-[node name="Button" parent="." instance=ExtResource("9_ra8vq")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -9.45425, 2.34083, -5.00135)
+[node name="Button" parent="." node_paths=PackedStringArray("door") groups=["Buttons"] instance=ExtResource("9_ra8vq")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -9.26065, 1.77725, -5.00135)
+door = NodePath("../Node3D2")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("10_3hr8y")]
-transform = Transform3D(0.591648, 0, 0.806197, 0, 1, 0, -0.806197, 0, 0.591648, -12.6375, 0.5, -12.3722)
+[node name="Button2" parent="." instance=ExtResource("9_ra8vq")]
 
-[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("button")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.9254, 0, -90.8099)
-script = ExtResource("11_ydhvq")
-button = NodePath("../Button")
+[node name="Game_door_1" parent="." instance=ExtResource("11_dc3dn")]
+transform = Transform3D(0.43, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.97355, 0.5, -12.0142)
+
+[node name="Node3D2" parent="." instance=ExtResource("9_7fl5r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.0528, 2.55695, -11.8733)
 
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position1/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position2/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
