@@ -71,10 +71,6 @@ func _physics_process(delta):
 		if EnemyDetection == true:
 			StateOfEnemy = 2
 		#var next_location = nav_agent.get_next_path_position()
-	elif StateOfEnemy == 2:
-		pass
-	elif StateOfEnemy == 3:
-		pass
 		
 	##enemy movement code
 	var next_location = nav_agent.get_next_path_position()

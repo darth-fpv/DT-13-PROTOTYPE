@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cy35rppfnmdqe"]
+[gd_scene load_steps=31 format=3 uid="uid://cy35rppfnmdqe"]
 
 [ext_resource type="Texture2D" uid="uid://i5tpdff61vic" path="res://textures/rusty_metal_02_diff_4k.jpg" id="1_f7wvx"]
 [ext_resource type="Texture2D" uid="uid://wmp8vjliwdn0" path="res://textures/dry_riverbed_rock_diff_4k.jpg" id="1_k3swg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dfpcdreqpkwt" path="res://door.tscn" id="9_7fl5r"]
 [ext_resource type="PackedScene" uid="uid://6any8qgrg121" path="res://scenes/Button.tscn" id="9_ra8vq"]
 [ext_resource type="PackedScene" uid="uid://d3vuo8ex0ecxb" path="res://SCRIPTS/Game_door_1.glb" id="11_dc3dn"]
+[ext_resource type="PackedScene" uid="uid://besvt4chq3f26" path="res://minimap.tscn" id="12_gsnk6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0xkp"]
 sky_top_color = Color(0.678944, 0.678944, 0.678944, 1)
@@ -60,6 +61,9 @@ uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qqrf5"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kibca"]
+size = Vector3(1, 2, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_tf7kn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkq7r"]
@@ -90,12 +94,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 8
+stretch_shrink = 6
 metadata/_edit_group_ = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(144, 81)
+size = Vector2i(192, 108)
 render_target_update_mode = 4
 
 [node name="Label" type="Label" parent="SubViewportContainer/SubViewport"]
@@ -637,6 +641,7 @@ mesh = SubResource("CylinderMesh_qqrf5")
 metadata/point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position1/Area3D"]
+shape = SubResource("BoxShape3D_kibca")
 
 [node name="position2" type="Node3D" parent="NavigationRegion3D/refernecePoints" groups=["ReferencePoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.10863, 1.44068, 127.994)
@@ -698,22 +703,37 @@ layers = 5
 mesh = SubResource("CylinderMesh_h38wl")
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/refernecePoints/position6"]
-metadata/point = true
+metadata/Point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/refernecePoints/position6/Area3D"]
 shape = SubResource("BoxShape3D_a36q7")
 
 [node name="Button" parent="." node_paths=PackedStringArray("door") groups=["Buttons"] instance=ExtResource("9_ra8vq")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -9.26065, 1.77725, -5.00135)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -9.26065, 2.11967, -9.3819)
 door = NodePath("../Node3D2")
 
-[node name="Button2" parent="." instance=ExtResource("9_ra8vq")]
+[node name="Button2" parent="." node_paths=PackedStringArray("door") groups=["Buttons"] instance=ExtResource("9_ra8vq")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -10.5777, 2.17171, -9.3655)
+door = NodePath("../Node3D2")
 
 [node name="Game_door_1" parent="." instance=ExtResource("11_dc3dn")]
 transform = Transform3D(0.43, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.97355, 0.5, -12.0142)
 
 [node name="Node3D2" parent="." instance=ExtResource("9_7fl5r")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.0528, 2.55695, -11.8733)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="minimap" parent="CanvasLayer" instance=ExtResource("12_gsnk6")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_right = 0.0
+offset_bottom = 160.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+target = NodePath("../../SubViewportContainer/SubViewport/Player")
 
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position1/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="NavigationRegion3D/refernecePoints/position2/Area3D" to="SubViewportContainer/SubViewport/Enimies/Enemy" method="_on_area_3d_area_entered"]

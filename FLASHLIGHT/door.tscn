@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfpcdreqpkwt"]
+[gd_scene load_steps=8 format=3 uid="uid://dfpcdreqpkwt"]
 
 [ext_resource type="Script" path="res://SCRIPTS/door.gd" id="1_qmcqx"]
 
@@ -6,34 +6,6 @@
 size = Vector3(1, 1, 2.5293)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fv070"]
-
-[sub_resource type="Animation" id="Animation_xvr4r"]
-resource_name = "door_open"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 4, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, -0.042), Vector3(0, 4, -0.042)]
-}
 
 [sub_resource type="Animation" id="Animation_nnfe7"]
 length = 0.001
@@ -62,9 +34,66 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, -0.042)]
 }
 
+[sub_resource type="Animation" id="Animation_5p25i"]
+resource_name = "door_close"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 4, -0.042), Vector3(0, 0, -0.042)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 4, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xvr4r"]
+resource_name = "door_open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 0.999995),
+"update": 0,
+"values": [Vector3(0, 0, -0.042), Vector3(0, 4, -0.042)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vof3f"]
 _data = {
 "RESET": SubResource("Animation_nnfe7"),
+"door_close": SubResource("Animation_5p25i"),
 "door_open": SubResource("Animation_xvr4r")
 }
 

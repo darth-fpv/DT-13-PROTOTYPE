@@ -12,7 +12,7 @@ func _physics_process(delta):
 		print("debug")
 		if collider.is_in_group("Buttons"):
 			Reticle.visible = true
-			if Input.is_action_just_pressed("Interact") and not collider.pressed:
+			if Input.is_action_just_pressed("Interact"):
 				collider.pressed = true
 				collider._interact()
 				print("button pressed")

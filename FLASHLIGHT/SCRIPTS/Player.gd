@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 
 ##player variaubles##
-@export var playerSpeed = 8
+@export var playerSpeed = 12
 @export var jumpforce = 8
 @export var playerAcceleration = 5.0
 @export var gravity = 9.81
