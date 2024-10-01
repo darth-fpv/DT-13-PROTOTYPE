@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dp6p2slmxe6gf"]
 
-[ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_vibjl"]
+[ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_3jxec"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0xkp"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -91,7 +91,7 @@ shape = SubResource("BoxShape3D_0v7xd")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57797, 0)
-script = ExtResource("1_vibjl")
+script = ExtResource("1_3jxec")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_w0ggm")

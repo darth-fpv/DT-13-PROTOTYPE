@@ -1,7 +1,7 @@
 extends ColorRect
 
 @export var target : NodePath
-@export var camdistance = 20
+@export var camdistance = 100
 
 @onready var player = get_node(target)
 @onready var camera = $SubViewportContainer/SubViewport/Camera3D

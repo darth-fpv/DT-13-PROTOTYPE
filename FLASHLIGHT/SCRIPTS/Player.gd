@@ -8,11 +8,14 @@ extends CharacterBody3D
 @export var jumpforce = 8
 @export var playerAcceleration = 5.0
 @export var gravity = 9.81
-@export var camera_sensitivity = 2
+@export var camera_sensitivity = 1
 @export var camera_acceleration = 20
+@export var map_vis = false
 ##calling player nodes when starting##
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+
+var map_state = 0
 
 ##enemy detection##
 var enemy_node = null
@@ -39,6 +42,17 @@ func _input(event):
 	#closes the game when ESC key is pressed#
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
+		
+	##map functionality##
+	if Input.is_action_pressed("map"):
+		if map_state == 0:
+			SpotLight3D.visible = false
+			map_vis = true
+			map_state = 1
+		elif map_state == 1:
+			SpotLight3D.visible = 1
+			map_vis = false
+			map_state = 0
 
 func  _physics_process(delta):
 	#grabs axis, left, right, forward and backwards, then asigns them to vector3(3 axis floating point co-ordinates)
@@ -114,3 +128,4 @@ func _disconect_point(area):
 func _enemy_enter_range(area):
 	if area.get_parent().has_method("_detect_player"):
 		enemy._detect_player()
+		
