@@ -2,6 +2,9 @@ extends Node3D
 @onready var res = DisplayServer.window_get_size()
 @onready var player = $SubViewportContainer/SubViewport/Player
 @onready var enemy = $SubViewportContainer/SubViewport/Enimies/Enemy
+@onready var map_vis = $CanvasLayer/Control/minimap
+@onready var flashlight_delay = .2
+var map_state = 0
 var possible_points
 var point
 
@@ -27,4 +30,16 @@ func _physics_process(delta):
 		get_tree().call_group("Enemies", "update_target_location", enemy.furthest_point.global_transform.origin)
 	elif enemy.StateOfEnemy == 3:
 		get_tree().call_group("Enemies", "update_target_location", enemy.random_point.global_transform.origin)
-
+#
+#func _input(event):
+	#if Input.is_action_just_pressed("map"):
+		#if map_state == 0:
+			#await get_tree().create_timer(flashlight_delay).timeout
+			#map_vis.visible = true
+			#
+			#map_state = 1
+		#elif map_state == 1:
+			#
+			#map_vis.visible = false
+		#
+			#map_state = 0

@@ -4,7 +4,7 @@ render_mode unshaded;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear;
 /*uniform sampler2D SCREEN_TEXTURE : source_color, hint_normal_roughness_texture, filter_nearest;*/
 
-const int pixel_size = 5;
+const int pixel_size = 4;
 
 
 void vertex() {

@@ -12,5 +12,4 @@ flip_faces = true
 size = Vector2(2, 2)
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
-visible = false
 mesh = SubResource("QuadMesh_va08c")
