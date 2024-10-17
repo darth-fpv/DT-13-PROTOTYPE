@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://vk0dxarstxj0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Container" type="Container" parent="Control"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0

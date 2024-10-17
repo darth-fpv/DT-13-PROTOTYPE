@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_fpgfl"]
 [ext_resource type="PackedScene" uid="uid://c2u5du1sms51q" path="res://Saves/CONE.tscn" id="2_icxw8"]
 [ext_resource type="PackedScene" uid="uid://so5ldpawhi5n" path="res://Interact/player_interact.tscn" id="3_xob44"]
-[ext_resource type="PackedScene" uid="uid://p4jklk8r5jsp" path="res://PixelShader.tscn" id="4_llkau"]
+[ext_resource type="PackedScene" uid="uid://p4jklk8r5jsp" path="res://scenes/PixelShader.tscn" id="4_r66fi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w0ggm"]
 
@@ -41,6 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496992, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.306789, -0.496992, -0.207722)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D/Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1887, 0.241795, 0)
 light_energy = 7.7
 light_volumetric_fog_energy = 1.88
 light_size = 0.496
@@ -49,6 +50,7 @@ spot_range = 20.0
 spot_angle = 25.0
 
 [node name="Flashlight Area" type="Area3D" parent="Head/Camera3D/Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177703, 0.239091, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/Hand/Flashlight Area"]
 
@@ -66,7 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09114, 0)
 [node name="AudioListener3D" type="AudioListener3D" parent="Head/Camera3D"]
 current = true
 
-[node name="MeshInstance3D" parent="Head/Camera3D" instance=ExtResource("4_llkau")]
+[node name="MeshInstance3D" parent="Head/Camera3D" instance=ExtResource("4_r66fi")]
 extra_cull_margin = 16384.0
 skeleton = NodePath("../..")
 
@@ -75,7 +77,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="VisionRaycast" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295964, -0.00501609, -0.172158)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.121751, 0.247806, -0.172158)
 target_position = Vector3(0, -1, -100)
 
 [node name="Enemy movement area" type="Area3D" parent="."]

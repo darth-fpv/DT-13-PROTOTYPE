@@ -1,5 +1,7 @@
 extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
+@onready var player = "/root/World/SubViewportContainer/SubViewport/Player"
+#@onready var player = 1
 #calls the navigationagent3D node#
 var speed = 10
 
@@ -35,21 +37,13 @@ func _physics_process(delta):
 	print(EnemyDetection)
 	#print(nearby_points)
 	##pathfinding at random##
-	#if pathfind.is_colliding():
-		#var furthest_point = 0
-		#var overlaps = []
-		#$RegistraitionArea.append.get_overlapping_bodies()
-		#print(overlaps)
 	point = RandomNumberGenerator.new().randi_range(0, len(nearby_points) - 1)
-	#print(point)
-	#possible_points[point].global_position
-		
-		
-		
 		
 	##enemy movement for direct line of sight.##
 	var current_location = global_transform.origin
 	#var collider = $VisionRaycast.get_collider()
+	
+	
 	
 	
 	
@@ -77,6 +71,11 @@ func _physics_process(delta):
 	var new_velocity = (next_location - current_location).normalized()*speed
 	#adds momentum to the enemy movement#
 	velocity = velocity.move_toward(new_velocity, .25)
+
+	var player_distance = global_position.distance_to(get_node(player).global_position)
+	print(player_distance)
+	if player_distance  <= 2:
+		get_tree().call_deferred("change_scene_to_file", "res://pdiddy.tscn")
 	
 	move_and_slide()
 
@@ -99,11 +98,12 @@ func _run():
 	if len(nearby_points) > 0:
 		for ReferencePoints in nearby_points:
 			if ReferencePoints == nearby_points[0]:
-				greatest_distance = ReferencePoints.global_position.distance_to(get_node("/root/World/SubViewportContainer/SubViewport/Player").global_position)
+				greatest_distance = ReferencePoints.global_position.distance_to(get_node(player).global_position)
 				print(greatest_distance)
 			#print(ReferencePoints)
 			#var distance = get_node("/root/World/SubViewportContainer/SubViewport/Player").distance_to(ReferencePoints)
-			var distance = ReferencePoints.global_position.distance_to(get_node("/root/World/SubViewportContainer/SubViewport/Player").global_position)
+			var distance = ReferencePoints.global_position.distance_to(get_node(player).global_position)
+			
 			
 			#print(ReferencePoints, ReferencePoints.global_position)
 			#print(ReferencePoints, get_node("/root/World/SubViewportContainer/SubViewport/Player").global_position)

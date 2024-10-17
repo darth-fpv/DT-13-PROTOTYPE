@@ -8,8 +8,12 @@ target_position = Vector3(0, 0, -4)
 script = ExtResource("1_d2g0u")
 
 [node name="prompt" type="Label" parent="."]
-offset_right = 140.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
 offset_bottom = 28.0
+grow_horizontal = 0
 
 [node name="reticle" type="TextureRect" parent="."]
 anchors_preset = 8
@@ -23,5 +27,6 @@ offset_right = 5.5
 offset_bottom = 4.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 size_flags_vertical = 4
 texture = ExtResource("2_6yoeq")

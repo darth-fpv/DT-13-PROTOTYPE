@@ -12,7 +12,7 @@ extends CharacterBody3D
 @export var jumpforce = 4
 @export var playerAcceleration = 5.0
 @export var gravity = 9.81 
-@export var camera_sensitivity = 1
+@export var camera_sensitivity = .5
 @export var camera_acceleration = 20
 
 ##calling player nodes when starting##
@@ -75,11 +75,13 @@ func _input(event):
 func  _physics_process(delta):
 	if map_vis.visible == false :
 		#grabs axis, left, right, forward and backwards, then asigns them to vector3(3 axis floating point co-ordinates)
-		direction = Input.get_axis("left", "right") * head.basis.x + Input.get_axis("fowrdward", "backward") * head.basis.z
+		direction = Input.get_axis("left", "right") * head.basis.x + Input.get_axis("forward", "backward") * head.basis.z
 		#creates a lerp/mix form the variable numbers, current velocity to potential maximum velocity, vertical force vecotor aswell.
 		#a lerp is a linear interpolation math "function", idk if that's the right word lol. 
 		velocity = velocity.lerp(direction * playerSpeed + velocity.y * Vector3.UP , playerAcceleration * delta)
-	
+	else:
+		velocity.x = 0
+		velocity.z = 0
 	
 	
 	# adds a lerp(linear interpolation) to the rotation of the cam we have recorded and outputs it into acelleration of the cam movement.
@@ -148,10 +150,3 @@ func _disconect_point(area):
 func _enemy_enter_range(area):
 	if area.get_parent().has_method("_detect_player"):
 		enemy._detect_player()
-		
-		
-		
-		
-		
-##MAP and lighting controls##
-##map functionality##

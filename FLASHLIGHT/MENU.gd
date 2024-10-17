@@ -6,4 +6,4 @@ func _input(event):
 
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://Saves/save spot.tscn")
+	get_tree().change_scene_to_file("res://Saves/map.tscn")
