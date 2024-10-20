@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp27v5ys1qh5u"]
+[gd_scene load_steps=8 format=3 uid="uid://dp27v5ys1qh5u"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Enemy.gd" id="1_kd5c0"]
 [ext_resource type="AudioStream" uid="uid://c7pcvjdet0eqq" path="res://Audio/465266-OBJWhled-Hand_Truck_Dolly_Metal-011_OB_UNLOADED_MTC_TheRoll_StereoAB.wav" id="2_iha65"]
@@ -9,7 +9,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jxw2x"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkjvl"]
+albedo_color = Color(0.477686, 0.158737, 0, 1)
+emission_enabled = true
+emission_energy_multiplier = 3.22
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_43hi4"]
+material = SubResource("StandardMaterial3D_xkjvl")
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemies"]]
 script = ExtResource("1_kd5c0")
@@ -39,7 +45,7 @@ autoplay = true
 doppler_tracking = 2
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 0.01, 0, 0, 0, 4, 0, 19.3008, 0)
+transform = Transform3D(4, 0, 0, 0, 0.01, 0, 0, 0, 4, 0, 7.90222, 0)
 mesh = SubResource("CylinderMesh_43hi4")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
