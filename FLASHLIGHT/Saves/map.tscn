@@ -28,6 +28,7 @@ background_energy_multiplier = 0.0
 sky = SubResource("Sky_ia5nq")
 ambient_light_energy = 6.15
 tonemap_mode = 2
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.12
 volumetric_fog_albedo = Color(0.0923971, 0.0923971, 0.092397, 1)
 volumetric_fog_emission_energy = 0.0
@@ -1067,8 +1068,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367222, -0.588243, -52.7787
 light_energy = 16.0
 light_indirect_energy = 16.0
 light_volumetric_fog_energy = 16.0
+light_specular = 2.455
+light_bake_mode = 0
 omni_range = 17.0
-omni_attenuation = 0.00704103
+omni_attenuation = 1e-05
 
 [node name="FogVolume" type="FogVolume" parent="winning sector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.629423, 2.19708)

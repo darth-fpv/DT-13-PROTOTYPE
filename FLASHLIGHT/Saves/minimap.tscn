@@ -30,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
-color = Color(0.0666667, 0.00784314, 0.027451, 1)
+color = Color(0.0666667, 0.00784314, 0.027451, 0)
 script = ExtResource("1_351yq")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]

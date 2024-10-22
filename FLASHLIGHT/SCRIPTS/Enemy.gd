@@ -77,7 +77,7 @@ func _physics_process(delta):
 	var player_distance = global_position.distance_to(get_node(player).global_position)
 	print(player_distance)
 	if player_distance  <= 2:
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/pdiddy.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/MENU.tscn")
 	
 	move_and_slide()
 
