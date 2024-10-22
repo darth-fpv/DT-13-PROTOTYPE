@@ -1,90 +1,80 @@
-[gd_scene load_steps=4 format=3 uid="uid://vk0dxarstxj0"]
+[gd_scene load_steps=5 format=3 uid="uid://vk0dxarstxj0"]
 
-[ext_resource type="Script" path="res://scenes/win_screen.gd" id="1_8ihdc"]
+[ext_resource type="Script" path="res://scenes/Winscreen'.gd" id="1_ti0sj"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_by63r"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8h46"]
+bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ndxvl"]
+[sub_resource type="LabelSettings" id="LabelSettings_27k6i"]
+font_size = 21
 font_color = Color(0, 0, 0, 1)
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_8ihdc")
+[sub_resource type="LabelSettings" id="LabelSettings_jwy8q"]
+font_color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1154.0
-offset_bottom = 643.0
-
-[node name="Container" type="Container" parent="Control"]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = -1
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 679.0
-offset_top = 342.0
-offset_right = 1191.0
-offset_bottom = 854.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport"]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -252.0
-offset_top = -50.5
-offset_right = 252.0
-offset_bottom = 50.5
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "You made it out of the facility alive.you are lucky. "
-label_settings = SubResource("LabelSettings_by63r")
-horizontal_alignment = 1
-uppercase = true
-max_lines_visible = 9
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8h46")
+script = ExtResource("1_ti0sj")
 
-[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1000.0
-offset_top = -20.0
-offset_right = 1000.0
-offset_bottom = 20.0
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(19.235, 19.235)
-size_flags_vertical = 3
-size_flags_stretch_ratio = 4.29
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
 
-[node name="Label2" type="Label" parent="SubViewportContainer/SubViewport"]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Let's just hope whatever was in there with you stays in that putrid place for the sake of humanity."
-label_settings = SubResource("LabelSettings_ndxvl")
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "You made it out alive.... You were lucky."
+label_settings = SubResource("LabelSettings_27k6i")
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
-uppercase = true
-max_lines_visible = 0
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Label2" type="Label" parent="Panel/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "But let's just hope you havnt let that thing out with you"
+label_settings = SubResource("LabelSettings_jwy8q")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.205662, 0, 0.0875011, 1)
+text = "Return to main menu"
+flat = true
+
+[connection signal="pressed" from="Panel/MarginContainer/CenterContainer/VBoxContainer/VBoxContainer/Button" to="Panel" method="_on_button_pressed"]
