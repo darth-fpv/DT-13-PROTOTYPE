@@ -3,7 +3,8 @@ extends CharacterBody3D
 @onready var player = "/root/World/SubViewportContainer/SubViewport/Player"
 #@onready var player = 1
 #calls the navigationagent3D node#
-var speed = 10
+var enemy_speed = 12
+var EnemyAcelleration = 12
 
 ##raycast variable##
 var StateOfEnemy = 1 ## 1: following PLayer, 2: Running, 3: Random Move
@@ -68,14 +69,15 @@ func _physics_process(delta):
 		
 	##enemy movement code
 	var next_location = nav_agent.get_next_path_position()
-	var new_velocity = (next_location - current_location).normalized()*speed
+	var new_velocity = (next_location - current_location).normalized()*enemy_speed
+	#velocity = velocity.lerp(direction * enemy_speed + velocity.y * Vector3.UP , EnemyAcelleration * delta)
 	#adds momentum to the enemy movement#
 	velocity = velocity.move_toward(new_velocity, .25)
-
+	#velocity = velocity.lerp(direction * enemy_speed + velocity.y * Vector3.UP , EnemyAcelleration * delta)
 	var player_distance = global_position.distance_to(get_node(player).global_position)
 	print(player_distance)
 	if player_distance  <= 2:
-		get_tree().call_deferred("change_scene_to_file", "res://pdiddy.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/pdiddy.tscn")
 	
 	move_and_slide()
 

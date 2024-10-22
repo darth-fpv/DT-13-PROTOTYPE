@@ -150,3 +150,13 @@ func _disconect_point(area):
 func _enemy_enter_range(area):
 	if area.get_parent().has_method("_detect_player"):
 		enemy._detect_player()
+
+
+
+
+
+	
+
+
+func _on_area_3d_area_entered(area):
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/win_screen.tscn")

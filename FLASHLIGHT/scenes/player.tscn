@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dh00tcfacvdqg"]
+[gd_scene load_steps=12 format=3 uid="uid://dh00tcfacvdqg"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.gd" id="1_fpgfl"]
 [ext_resource type="PackedScene" uid="uid://c2u5du1sms51q" path="res://Saves/CONE.tscn" id="2_icxw8"]
@@ -22,8 +22,12 @@ radius = 42.0
 
 [sub_resource type="Environment" id="Environment_undg6"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3dvvd"]
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57797, 0)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("1_fpgfl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -94,6 +98,13 @@ shape = SubResource("CylinderShape3D_2onct")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.00104718, 0.999999, 0, -0.999999, -0.00104718, 0, 14.8081, -0.0155068)
 environment = SubResource("Environment_undg6")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_3dvvd")
 
 [connection signal="timeout" from="FlashlightTimer" to="." method="_on_flashlight_timer_timeout"]
 [connection signal="area_entered" from="Enemy movement area" to="." method="_connect_point"]

@@ -10,9 +10,11 @@
 sky_material = SubResource("ProceduralSkyMaterial_wey4g")
 
 [sub_resource type="Environment" id="Environment_uqqcw"]
-background_mode = 2
+background_color = Color(0, 0, 0, 0)
 background_energy_multiplier = 2.0
 sky = SubResource("Sky_t61kl")
+ambient_light_source = 2
+ambient_light_color = Color(0.439216, 0.0392157, 0, 1)
 
 [node name="minimap" type="ColorRect"]
 anchors_preset = 8

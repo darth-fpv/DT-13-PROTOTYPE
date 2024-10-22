@@ -16,11 +16,12 @@ script = ExtResource("1_873xh")
 offset_right = 40.0
 offset_bottom = 40.0
 stretch = true
+stretch_shrink = 4
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(1334.25, 906.25)
+position = Vector2(813, 603)
 rotation = 3.14159
-scale = Vector2(2669.5, 1813.5)
+scale = Vector2(3111.38, 2262.51)
 mesh = SubResource("QuadMesh_kn62p")
 texture = ExtResource("1_svtdw")
 

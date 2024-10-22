@@ -2,12 +2,15 @@ extends CollisionObject3D
 class_name interact
 
 @export var prompt_message = "interact"
-var pressed = false
 @export var door : Node
+var pressed = false
+var button_state = false
 
 func _process(delta):
 	print("press", pressed)
 	
 	
 func _interact():
-	door._open()
+	if button_state == false:
+		door._open()
+		button_state = true
