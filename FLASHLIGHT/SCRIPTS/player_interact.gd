@@ -12,5 +12,6 @@ func _process(delta):
 	
 func _interact():
 	if button_state == false:
+		$AudioStreamPlayer3D.play()
 		door._open()
 		button_state = true

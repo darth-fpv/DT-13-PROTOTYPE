@@ -49,7 +49,6 @@ func _input(event):
 		get_tree().quit()
 	
 	
-	
 ##MAP and lighting controls##
 	if Input.is_action_just_pressed("map"):
 		if map_state == 0:
@@ -67,11 +66,7 @@ func _input(event):
 			
 			map_state = 0
 	
-
 	
-	
-	
-
 func  _physics_process(delta):
 	if map_vis.visible == false :
 		#grabs axis, left, right, forward and backwards, then asigns them to vector3(3 axis floating point co-ordinates)
@@ -87,7 +82,6 @@ func  _physics_process(delta):
 	# adds a lerp(linear interpolation) to the rotation of the cam we have recorded and outputs it into acelleration of the cam movement.
 	head.rotation.y = lerp(head.rotation.y, -deg_to_rad(head_y_axix), camera_acceleration * delta)
 	camera.rotation.x = lerp(camera.rotation.x, -deg_to_rad(camera_x_axis), camera_acceleration * delta)
-	
 	
 	
 	# only can jump if on floor.
@@ -140,23 +134,10 @@ func _connect_point(area):
 ##removes the objects out of the array if the objects exits the radius Area around the player##
 func _disconect_point(area):
 	enemy.nearby_points.erase(area.get_parent())
-	
-	#terms to remeber:
-			#delta = time in respect to the last passed frame, used for physics and functions.
-			#Vector3 = declairing a plane with 3 dimentional coordinate properties.  
-			#lerp = liner interpolation, used for velocity and accelleration changes 
-
 
 func _enemy_enter_range(area):
 	if area.get_parent().has_method("_detect_player"):
 		enemy._detect_player()
-
-
-
-
-
-	
-
 
 func _on_area_3d_area_entered(area):
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/win_screen.tscn")

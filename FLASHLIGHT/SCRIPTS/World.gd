@@ -1,3 +1,4 @@
+##variables for the 
 extends Node3D
 @onready var res = DisplayServer.window_get_size()
 @onready var player = $SubViewportContainer/SubViewport/Player

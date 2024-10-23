@@ -77,7 +77,7 @@ func _physics_process(delta):
 	var player_distance = global_position.distance_to(get_node(player).global_position)
 	print(player_distance)
 	if player_distance  <= 2:
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/MENU.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/death_screen.tscn")
 	
 	move_and_slide()
 
@@ -147,5 +147,5 @@ func _detect_player():
 		StateOfEnemy = 1
 
 
-func _on_audio_stream_player_3d_ready():
-	AudioStreamMP3
+#func _on_audio_stream_player_3d_ready():
+	#AudioStreamMP3

@@ -29,6 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57797, 0)
 collision_layer = 17
 collision_mask = 17
 script = ExtResource("1_fpgfl")
+camera_sensitivity = 0.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_w0ggm")

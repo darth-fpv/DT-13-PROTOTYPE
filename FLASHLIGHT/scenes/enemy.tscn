@@ -40,9 +40,11 @@ one_shot = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_iha65")
-volume_db = 80.0
+volume_db = 24.615
+unit_size = 77.24
 autoplay = true
-doppler_tracking = 2
+max_distance = 787.69
+max_polyphony = 4
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 0.01, 0, 0, 0, 4, 0, 7.90222, 0)
