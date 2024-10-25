@@ -25,7 +25,7 @@ func _ready():
 	furthest_point = get_tree().get_first_node_in_group("ReferencePoints")
 
 
-##code to toggle between modes, flip flop##
+##code to toggle between modes,flip flop#
 func _physics_process(delta):
 	if Input.is_action_just_pressed("Debug_Enemy"):
 		$Timer.stop()
@@ -42,37 +42,14 @@ func _physics_process(delta):
 		
 	##enemy movement for direct line of sight.##
 	var current_location = global_transform.origin
-	#var collider = $VisionRaycast.get_collider()
-	
-	
-	
-	
-	
-	
-	
-	##Enemy random pathfindg away from the player##
-	#possible_points = get_tree().get_nodes_in_group("ReferencePoints")
-	#print(possible_points)
-	
-	#var StateOfEnemy = 1
-	#var furthest = vector3
-	
-	
-	
-	
-	
-	##enemy chasing the player
-	if StateOfEnemy == 1:
-		if EnemyDetection == true:
-			StateOfEnemy = 2
-		#var next_location = nav_agent.get_next_path_position()
-		
-	##enemy movement code
+
+
+	##enemy movement code##
 	var next_location = nav_agent.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized()*enemy_speed
 	#velocity = velocity.lerp(direction * enemy_speed + velocity.y * Vector3.UP , EnemyAcelleration * delta)
 	#adds momentum to the enemy movement#
-	velocity = velocity.move_toward(new_velocity, .25)
+	velocity = velocity.move_toward(new_velocity, 1)
 	#velocity = velocity.lerp(direction * enemy_speed + velocity.y * Vector3.UP , EnemyAcelleration * delta)
 	var player_distance = global_position.distance_to(get_node(player).global_position)
 	print(player_distance)
@@ -82,16 +59,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 func update_target_location(target_location):
+	nav_agent.set_target_position(target_location)
 	#print("tartget_Loccation:")
 	#print(target_location)
-	nav_agent.set_target_position(target_location)
-	
-func update_random_position(position_location):
-	
-	nav_agent.set_target_position(position_location)
 
-func _process(delta):
-	pass
+
+func update_random_position(position_location):
+	nav_agent.set_target_position(position_location)
 
 
 func _run():
@@ -102,15 +76,8 @@ func _run():
 			if ReferencePoints == nearby_points[0]:
 				greatest_distance = ReferencePoints.global_position.distance_to(get_node(player).global_position)
 				print(greatest_distance)
-			#print(ReferencePoints)
 			#var distance = get_node("/root/World/SubViewportContainer/SubViewport/Player").distance_to(ReferencePoints)
 			var distance = ReferencePoints.global_position.distance_to(get_node(player).global_position)
-			
-			
-			#print(ReferencePoints, ReferencePoints.global_position)
-			#print(ReferencePoints, get_node("/root/World/SubViewportContainer/SubViewport/Player").global_position)
-			#print(ReferencePoints, distance)
-			
 			
 			##logic for the "furthest "position" object in the radius of the player##
 			if distance > greatest_distance:
@@ -119,8 +86,14 @@ func _run():
 				print("here", furthest_point)
 				print(furthest_point.global_position)
 			print(greatest_distance)
+			
+			#print(ReferencePoints, ReferencePoints.global_position)
+			#print(ReferencePoints, get_node("/root/World/SubViewportContainer/SubViewport/Player").global_position)
+			#print(ReferencePoints, distance)
+			
+			
 
-
+##
 func _random_point():
 	possible_points = get_tree().get_nodes_in_group("ReferencePoints")
 	print(possible_points)
@@ -141,11 +114,15 @@ func _on_area_3d_area_entered(area):
 	print("ghi")
 
 
+
+
+	 #checks if enemy deetction, will change the enemy state to running
+	if StateOfEnemy == 1:
+		if EnemyDetection == true:
+			StateOfEnemy = 2
+
+
 func _detect_player():
 	if StateOfEnemy == 3:
 		$Timer.stop()
 		StateOfEnemy = 1
-
-
-#func _on_audio_stream_player_3d_ready():
-	#AudioStreamMP3

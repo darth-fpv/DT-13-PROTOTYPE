@@ -11,7 +11,7 @@ var point
 
 
 func _ready():
-	
+	##fill in the intial position##
 	possible_points = get_tree().get_nodes_in_group("ReferencePoints")
 	print(possible_points)
 	point = RandomNumberGenerator.new().randi_range(0, len(possible_points) - 1)
@@ -22,7 +22,7 @@ func _ready():
 	
 	
 
-##updating the target location
+##updating the target location##
 func _physics_process(delta):
 	$SubViewportContainer/SubViewport/Label.text = str(enemy.StateOfEnemy)
 	if enemy.StateOfEnemy == 1:

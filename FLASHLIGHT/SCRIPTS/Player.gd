@@ -13,7 +13,7 @@ extends CharacterBody3D
 @export var playerAcceleration = 5.0
 @export var gravity = 9.81 
 @export var camera_sensitivity = .5
-@export var camera_acceleration = 20
+@export var camera_acceleration = 1
 
 ##calling player nodes when starting##
 @onready var head = $Head

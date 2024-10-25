@@ -101,6 +101,7 @@ transform = Transform3D(1, 0, 0, 0, -0.00104718, 0.999999, 0, -0.999999, -0.0010
 environment = SubResource("Environment_undg6")
 
 [node name="Area3D" type="Area3D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 16
 
